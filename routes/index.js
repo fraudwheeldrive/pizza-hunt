@@ -1,17 +1,12 @@
-
 const router = require('express').Router();
-const path = require('path');
+const apiRoutes = require('./api');
+const htmlRoutes = require('./html/html-routes');
 
-router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/pizza-list.html'));
-});
+router.use('/api', apiRoutes);
+router.use('/', htmlRoutes);
 
-router.get('/add-pizza', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/add-pizza.html'));
-});
-
-router.get('/pizza', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/pizza.html'));
+router.use((req, res) => {
+  res.status(404).send('<h1>😝 404 Error!</h1>');
 });
 
 module.exports = router;
