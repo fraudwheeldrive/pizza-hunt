@@ -9,6 +9,18 @@ const $newCommentForm = document.querySelector('#new-comment-form');
 
 let pizzaId;
 
+function getPizza() {
+  const searchParams = new URLSearchParams(document.location.search.substring(1));
+  const pizzaId = searchParams.get('id');
+
+  fetch(`/api/pizzas/${pizzaID}`)
+  .then(response => {
+    console.log(response);
+    return response.json();
+  })
+  .then(printPizza);
+}
+
 function printPizza(pizzaData) {
   console.log(pizzaData);
 
